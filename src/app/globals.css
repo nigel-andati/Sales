@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cool-tone identity: deep navy → cobalt → cyan, on ice-blue neutrals. */
+  --color-navy: #0a1733;
+  --color-midnight: #102552;
+  --color-cobalt: #2556e8;
+  --color-cobalt-dark: #1b42bd;
+  --color-cyan: #27c4e8;
+  --color-ice: #e3edf8;
+  --color-mist: #edf1f6;
+  --color-steel: #5f6b82;
+  --color-line: #d7dfe9;
+  --color-charcoal: #151b28;
+  --color-whatsapp: #1fa855;
+  --color-whatsapp-dark: #178a45;
+
+  --font-display: var(--font-sora), var(--font-cjk), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-marquee-reverse: marquee 52s linear infinite reverse;
+  --animate-drift: drift 26s ease-in-out infinite alternate;
+  --animate-chevrons: chevrons 3.2s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes drift {
+    from { transform: scale(1.06) translate3d(0, 0, 0); }
+    to { transform: scale(1.14) translate3d(-1.5%, -1%, 0); }
+  }
+  @keyframes chevrons {
+    from { background-position: 0 0; }
+    to { background-position: 96px 0; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6.5rem;
+  }
+  body {
+    background: var(--color-mist);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+  ::selection {
+    background: var(--color-cobalt);
+    color: white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 3px;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 84rem;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 768px) {
+    .shell { padding-inline: 1.75rem; }
+  }
+
+  .h-section {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.85rem, 3.1vw, 2.75rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--color-navy);
+  }
+
+  /* Light, rounded content card used across the page. */
+  .card {
+    border-radius: 1.375rem;
+    background: white;
+    box-shadow: 0 1px 0 rgba(10, 23, 51, 0.04), 0 12px 32px -24px rgba(10, 23, 51, 0.28);
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.9rem;
+    border: 1.5px solid transparent;
+    background: var(--color-mist);
+    padding: 0.8rem 1rem;
+    font-size: 1rem; /* 16px avoids iOS zoom on focus */
+    color: var(--color-charcoal);
+    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+  }
+  .field::placeholder { color: #8a95a8; }
+  .field:hover { background: #e6ebf2; }
+  .field:focus {
+    outline: none;
+    background: white;
+    border-color: var(--color-cobalt);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-cobalt) 14%, transparent);
+  }
+  .field[aria-invalid="true"] {
+    border-color: #d9453a;
+    box-shadow: 0 0 0 4px rgba(217, 69, 58, 0.12);
+  }
+
+  /* Moving chevron texture for the contact band. */
+  .chevrons {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M18 8 L52 48 L18 88 H40 L74 48 L40 8 Z' fill='white' fill-opacity='0.07'/></svg>");
+    background-size: 96px 96px;
+  }
+
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
