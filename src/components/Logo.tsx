@@ -2,7 +2,7 @@ import { siteConfig } from "@/config/site";
 
 /**
  * Temporary brand mark: two linked arcs (China and Kenya) joined by a bridge
- * line — "Daraja" means "bridge" in Swahili. Replace with your final logo.
+ * line, for Sinoke (Sino + Kenya). Replace with your final logo.
  */
 export function LogoMark({ className = "size-8", tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
   return (

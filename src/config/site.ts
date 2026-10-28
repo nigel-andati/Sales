@@ -15,10 +15,10 @@
 const env = (value: string | undefined, fallback = "") => (value && value.trim()) || fallback;
 
 export const siteConfig = {
-  /** TEMPORARY brand name. "Daraja" means "bridge" in Swahili. Replace with your registered name. */
-  name: env(process.env.NEXT_PUBLIC_COMPANY_NAME, "Daraja Sourcing"),
+  /** TEMPORARY brand name — "Sinoke" blends Sino (China) and Kenya. Check availability before registering. */
+  name: env(process.env.NEXT_PUBLIC_COMPANY_NAME, "Sinoke Sourcing"),
   /** Short wordmark text shown in the logo. */
-  shortName: env(process.env.NEXT_PUBLIC_COMPANY_SHORT_NAME, "Daraja"),
+  shortName: env(process.env.NEXT_PUBLIC_COMPANY_SHORT_NAME, "Sinoke"),
   tagline: "China-to-Kenya sourcing & import",
   description:
     "Send us a product photo, link or description. We find and compare suppliers in China, coordinate quality checks, consolidate your goods and arrange shipping to Kenya.",
