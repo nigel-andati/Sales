@@ -22,6 +22,22 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <div
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: 18,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "linear-gradient(135deg, #1a5cff 0%, #27c4e8 100%)",
+              fontSize: 34,
+              fontWeight: 900,
+              color: "#ffffff",
+            }}
+          >
+            L→
+          </div>
                     <div style={{ fontSize: 40, fontWeight: 900, letterSpacing: -1, textTransform: "uppercase" }}>{siteConfig.shortName}</div>
           <div style={{ marginLeft: "auto", fontSize: 22, color: "#9a9a9a", letterSpacing: 1, textTransform: "uppercase" }}>
             China → Kenya
