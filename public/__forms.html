@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Forms</title></head>
+<body>
+<!--
+  Static copy of the quote form so Netlify Forms can detect it at deploy time.
+  Field names must match src/lib/quote.ts exactly.
+-->
+<form name="quote-request" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+  <input type="hidden" name="form-name" value="quote-request" />
+  <input type="hidden" name="subject" />
+  <input name="bot-field" />
+  <input type="text" name="name" />
+  <input type="tel" name="whatsapp" />
+  <input type="email" name="email" />
+  <textarea name="product"></textarea>
+  <input type="text" name="product-url" />
+  <input type="text" name="quantity" />
+  <select name="budget"><option value="">-</option></select>
+  <input type="text" name="destination" />
+  <input type="file" name="product-image" />
+  <textarea name="notes"></textarea>
+</form>
+</body>
+</html>
