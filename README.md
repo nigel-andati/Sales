@@ -6,7 +6,7 @@ Next.js (App Router) + TypeScript + Tailwind CSS, deployed on Netlify.
 
 Edit **`src/config/site.ts`**, or set the environment variables in `.env.example` in the Netlify dashboard. These include company name, WhatsApp number, email, location, hours, social links, and the Google Analytics / Meta Pixel IDs. If a detail is left empty, the related link is hidden. If no WhatsApp number is set, WhatsApp buttons go to the quote form instead.
 
-The brand name "Sinoke Sourcing" and the logo are temporary placeholders.
+The brand name "Navora Sourcing" and the logo are temporary placeholders.
 
 ## Content
 
