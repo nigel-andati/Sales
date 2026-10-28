@@ -15,10 +15,10 @@
 const env = (value: string | undefined, fallback = "") => (value && value.trim()) || fallback;
 
 export const siteConfig = {
-  /** TEMPORARY brand name — "Navora", from "navigate". Check availability before registering. */
-  name: env(process.env.NEXT_PUBLIC_COMPANY_NAME, "Navora Sourcing"),
+  /** TEMPORARY brand name — "Portiva", from "port". Check availability before registering. */
+  name: env(process.env.NEXT_PUBLIC_COMPANY_NAME, "Portiva Logistics"),
   /** Short wordmark text shown in the logo. */
-  shortName: env(process.env.NEXT_PUBLIC_COMPANY_SHORT_NAME, "Navora"),
+  shortName: env(process.env.NEXT_PUBLIC_COMPANY_SHORT_NAME, "Portiva"),
   tagline: "China-to-Kenya sourcing & import",
   description:
     "Send us a product photo, link or description. We find and compare suppliers in China, coordinate quality checks, consolidate your goods and arrange shipping to Kenya.",
