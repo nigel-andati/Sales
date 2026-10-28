@@ -5,23 +5,23 @@ import { services } from "@/content/home";
 
 export function Services() {
   return (
-    <section id="services" aria-labelledby="services-title" className="relative overflow-hidden py-20 md:py-28">
-      <IsoScene className="pointer-events-none absolute top-6 -right-40 hidden w-[58rem] text-[#c3cfdd] opacity-70 lg:block" />
+    <section id="services" aria-labelledby="services-title" className="relative overflow-hidden pt-16 pb-12 md:pt-24 md:pb-20">
+      <IsoScene className="pointer-events-none absolute top-0 -right-24 hidden w-[60rem] text-[#c9d3dc] opacity-80 lg:block" />
       <div className="shell relative">
         <SectionHead
           id="services-title"
-          title={<>We source products in China <span className="text-cobalt">and deliver them to Kenya</span></>}
-          intro="Sourcing, checking, consolidating and shipping — coordinated by one team, from your first message to delivery."
+          title={<>We source products in China<br className="hidden md:block" /> and deliver them to Kenya</>}
+          intro="Sourcing, checks and shipping — coordinated by one team"
         />
-        <Stagger className="mt-12 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:max-w-[64rem] lg:grid-cols-3 lg:gap-4">
+        <Stagger className="mt-6 grid gap-3 sm:grid-cols-2 md:mt-6 lg:grid-cols-3 lg:gap-12">
           {services.map((s) => (
             <StaggerItem key={s.title}>
-              <article className="card group flex h-full flex-col p-6 transition-[transform,box-shadow] duration-500 ease-out-expo hover:-translate-y-1 hover:shadow-[0_28px_60px_-30px_rgba(10,23,51,0.45)] md:p-7">
-                <span className="flex size-11 items-center justify-center rounded-[0.85rem] bg-gradient-to-br from-cobalt to-cyan text-white shadow-[0_10px_20px_-10px_rgba(37,86,232,0.9)] transition-transform duration-500 ease-out-expo group-hover:-rotate-6 group-hover:scale-105">
-                  <Icon name={s.icon} className="size-[1.3rem]" />
+              <article className="card group flex h-full flex-col p-6 transition-transform duration-500 ease-out-expo hover:-translate-y-1 lg:min-h-[11.25rem]">
+                <span className="flex size-9 items-center justify-center rounded-[0.55rem] bg-cobalt text-white transition-transform duration-500 ease-out-expo group-hover:-rotate-6">
+                  <Icon name={s.icon} className="size-5" />
                 </span>
-                <h3 className="mt-6 text-[1.12rem] font-semibold text-navy">{s.title}</h3>
-                <p className="mt-2 text-[0.93rem] leading-relaxed text-steel">{s.body}</p>
+                <h3 className="mt-5 text-base font-semibold text-[#0e1526]">{s.title}</h3>
+                <p className="mt-1 text-[0.95rem] leading-snug text-[#0e1526]/80">{s.body}</p>
               </article>
             </StaggerItem>
           ))}

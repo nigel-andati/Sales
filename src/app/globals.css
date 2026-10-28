@@ -2,21 +2,21 @@
 
 @theme {
   /* Cool-tone identity: deep navy → cobalt → cyan, on ice-blue neutrals. */
-  --color-navy: #0a1733;
-  --color-midnight: #102552;
-  --color-cobalt: #2556e8;
-  --color-cobalt-dark: #1b42bd;
+  --color-navy: #0b1d3a;
+  --color-midnight: #13305e;
+  --color-cobalt: #1a5cff;
+  --color-cobalt-dark: #0f47db;
   --color-cyan: #27c4e8;
   --color-ice: #e3edf8;
-  --color-mist: #edf1f6;
+  --color-mist: #e9eef1;
   --color-steel: #5f6b82;
   --color-line: #d7dfe9;
   --color-charcoal: #151b28;
   --color-whatsapp: #1fa855;
   --color-whatsapp-dark: #178a45;
 
-  --font-display: var(--font-sora), var(--font-cjk), ui-sans-serif, sans-serif;
-  --font-sans: var(--font-manrope), ui-sans-serif, sans-serif;
+  --font-display: var(--font-inter), var(--font-cjk), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -54,7 +54,7 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.015em;
   }
   ::selection {
     background: var(--color-cobalt);
@@ -73,41 +73,41 @@
   .shell {
     margin-inline: auto;
     width: 100%;
-    max-width: 84rem;
-    padding-inline: 1rem;
+    max-width: 90rem;
+    padding-inline: 0.75rem;
   }
   @media (min-width: 768px) {
-    .shell { padding-inline: 1.75rem; }
+    .shell { padding-inline: 1.5rem; }
   }
 
   .h-section {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: clamp(1.85rem, 3.1vw, 2.75rem);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    color: var(--color-navy);
+    font-size: clamp(1.6rem, 2.45vw, 2.2rem);
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+    color: #0e1526;
   }
 
   /* Light, rounded content card used across the page. */
   .card {
-    border-radius: 1.375rem;
+    border-radius: 1.25rem;
     background: white;
-    box-shadow: 0 1px 0 rgba(10, 23, 51, 0.04), 0 12px 32px -24px rgba(10, 23, 51, 0.28);
   }
 
   .field {
     width: 100%;
-    border-radius: 0.9rem;
+    border-radius: 999px;
     border: 1.5px solid transparent;
-    background: var(--color-mist);
-    padding: 0.8rem 1rem;
+    background: #f3f5f7;
+    padding: 0.85rem 1.25rem;
     font-size: 1rem; /* 16px avoids iOS zoom on focus */
     color: var(--color-charcoal);
     transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
   }
   .field::placeholder { color: #8a95a8; }
-  .field:hover { background: #e6ebf2; }
+  .field:hover { background: #eceff3; }
+  textarea.field { border-radius: 1.4rem; }
   .field:focus {
     outline: none;
     background: white;

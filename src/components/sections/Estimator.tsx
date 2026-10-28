@@ -43,8 +43,8 @@ function NumberField({
   const id = useId();
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-[0.78rem] font-semibold text-steel">
-        {label} <span className="font-normal sm:hidden">({unit})</span>
+      <label htmlFor={id} className="sr-only">
+        {label} ({unit})
       </label>
       <div className="relative">
         <input
@@ -55,9 +55,10 @@ function NumberField({
           step={step}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="field !px-3 tabular-nums sm:!pr-11 sm:!pl-4"
+          placeholder={label}
+          className="field !px-4 tabular-nums sm:!pr-11 sm:!pl-5"
         />
-        <span className="pointer-events-none absolute top-1/2 right-3.5 hidden -translate-y-1/2 text-[0.8rem] font-semibold text-steel sm:block">{unit}</span>
+        <span className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-[0.8rem] text-steel">{unit}</span>
       </div>
     </div>
   );
@@ -108,164 +109,113 @@ export function Estimator() {
     `Shipment estimate: ${count} carton(s) of ${l}×${w}×${h} cm, ${kg} kg each — ` +
     `${r.cbm.toFixed(2)} m³, ${Math.round(r.gross)} kg gross, ${Math.round(r.chargeable)} kg air chargeable. ` +
     `From ${origin} to ${dest || "Kenya"}.`;
-  const max = Math.max(r.gross, r.volumetric, 1);
-
   return (
-    <section id="estimator" aria-labelledby="estimator-title" className="pb-20 md:pb-28">
+    <section id="estimator" aria-labelledby="estimator-title" className="pb-16 md:pb-24">
       <div className="shell">
-        <div className="relative isolate grid gap-8 overflow-hidden rounded-[2rem] bg-navy p-5 text-white sm:p-8 lg:grid-cols-12 lg:gap-10 lg:p-12">
-          <Image src={images.airCargo.src} alt="" fill quality={55} sizes="100vw" className="-z-20 object-cover opacity-30 mix-blend-luminosity" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy via-navy/92 to-midnight/80" aria-hidden="true" />
+        <div className="relative isolate grid gap-8 overflow-hidden rounded-[1.25rem] bg-navy p-5 text-white sm:p-8 lg:grid-cols-12 lg:gap-10 lg:p-6 lg:pl-12">
+          <Image src={images.airCargo.src} alt="" fill quality={55} sizes="100vw" className="-z-20 object-cover opacity-25 mix-blend-luminosity" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/90 to-navy/60" aria-hidden="true" />
 
-          <Reveal className="flex flex-col lg:col-span-5">
-            <p className="text-[0.75rem] font-bold tracking-[0.16em] text-cyan uppercase">Shipment estimator</p>
-            <h2 id="estimator-title" className="mt-3 text-[clamp(1.9rem,3.2vw,2.8rem)] leading-[1.06] font-semibold text-balance">
-              How big is your shipment?
+          <Reveal className="flex flex-col lg:col-span-6 lg:py-6">
+            <h2 id="estimator-title" className="text-[clamp(1.6rem,2.45vw,2.2rem)] leading-[1.2] font-semibold text-balance">
+              Shipment size calculator
             </h2>
-            <p className="mt-4 max-w-md text-[0.98rem] leading-relaxed text-white/70">
-              Freight is priced on volume and weight. Enter your cartons to see the numbers a forwarder looks at — then send
-              them with your quote request.
+            <p className="mt-3 max-w-[32rem] text-[0.95rem] leading-snug text-white/90">
+              Freight is priced on volume and weight. Enter your cartons to see the numbers a forwarder works from — air
+              chargeable weight uses the standard cm³ ÷ 6,000 rule — then send them with your quote request.
             </p>
-            <dl className="mt-8 space-y-4 text-[0.88rem]">
-              {[
-                ["Volume (m³)", "Length × width × height × cartons. Sea freight is usually priced on this."],
-                ["Air chargeable weight", "The greater of actual weight and volumetric weight (cm³ ÷ 6,000)."],
-              ].map(([t, d]) => (
-                <div key={t} className="flex gap-3">
-                  <span className="mt-1 size-2 shrink-0 rounded-full bg-cyan" />
-                  <div>
-                    <dt className="font-semibold">{t}</dt>
-                    <dd className="text-white/60">{d}</dd>
-                  </div>
-                </div>
-              ))}
-            </dl>
-            <div className="mt-auto flex flex-col gap-3 pt-10 sm:flex-row lg:flex-col lg:items-start">
-              <QuoteButton location="estimator" size="lg" className="w-full sm:w-auto" prefill={{ notes: summary, quantity: `${count} cartons` }}>
-                <span className="sm:hidden">Quote with these numbers</span>
-                <span className="hidden sm:inline">
-Get a quote with these numbers</span>
+            <div className="mt-8 flex flex-col gap-3 lg:mt-auto">
+              <QuoteButton location="estimator" size="lg" className="w-full sm:w-[27rem]" prefill={{ notes: summary, quantity: `${count} cartons` }}>
+                Get a quote with these numbers
               </QuoteButton>
-              <WhatsAppButton location="estimator" size="lg" className="w-full sm:w-auto" message={`${siteConfig.whatsappMessages.quote} ${summary}`}>
+              <WhatsAppButton location="estimator" size="md" variant="glass" className="w-full sm:w-[27rem]" message={`${siteConfig.whatsappMessages.quote} ${summary}`}>
                 Discuss on WhatsApp
               </WhatsAppButton>
             </div>
           </Reveal>
 
-          <Reveal delay={0.15} className="lg:col-span-7">
-            <div className="rounded-[1.5rem] bg-white p-5 text-charcoal shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)] sm:p-7">
-              <fieldset>
-                <legend className="text-[0.92rem] font-semibold text-navy">Carton size</legend>
-                <div className="mt-3 grid grid-cols-3 gap-2.5">
+          <Reveal delay={0.12} className="lg:col-span-6 lg:justify-self-end">
+            <div className="w-full rounded-[1.25rem] bg-white p-5 text-[#0e1526] sm:p-9 lg:w-[39rem]">
+              <div className="space-y-3">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="sr-only">Shipping from (China)</span>
+                    <select id={originId} value={origin} onChange={(e) => setOrigin(e.target.value)} className="field appearance-none">
+                      {ORIGINS.map((o) => (
+                        <option key={o} value={o}>
+                          From: {o}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block">
+                    <span className="sr-only">Delivering to (Kenya)</span>
+                    <input id={destId} list="estimator-towns" value={dest} onChange={(e) => setDest(e.target.value)} placeholder="Delivery town in Kenya" className="field" />
+                    <datalist id="estimator-towns">
+                      {siteConfig.destinations.map((d) => (
+                        <option key={d} value={d} />
+                      ))}
+                    </datalist>
+                  </label>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
                   <NumberField label="Length" unit="cm" value={l} onChange={setL} />
                   <NumberField label="Width" unit="cm" value={w} onChange={setW} />
                   <NumberField label="Height" unit="cm" value={h} onChange={setH} />
                 </div>
-              </fieldset>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <NumberField label="Weight per carton" unit="kg" value={kg} onChange={setKg} step={0.5} />
-                <div>
-                  <p className="mb-1.5 text-[0.78rem] font-semibold text-steel" id="cartons-label">
-                    Number of cartons
-                  </p>
-                  <div className="flex items-center gap-2" role="group" aria-labelledby="cartons-label">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <NumberField label="Weight per carton" unit="kg" value={kg} onChange={setKg} step={0.5} />
+                  <div className="flex items-center gap-1 rounded-full bg-[#f3f5f7] p-1" role="group" aria-label="Number of cartons">
                     <button
                       type="button"
                       onClick={() => setCount((c) => Math.max(1, c - 1))}
                       aria-label="Fewer cartons"
-                      className="flex size-12 shrink-0 items-center justify-center rounded-[0.9rem] bg-mist text-navy transition-colors hover:bg-ice"
+                      className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-[#0e1526] transition-colors hover:bg-ice"
                     >
                       <span className="h-0.5 w-3.5 rounded bg-current" />
                     </button>
-                    <input
-                      type="number"
-                      inputMode="numeric"
-                      min={1}
-                      aria-labelledby="cartons-label"
-                      value={count}
-                      onChange={(e) => setCount(Math.max(1, Math.round(Number(e.target.value) || 1)))}
-                      className="field text-center tabular-nums"
-                    />
+                    <label className="flex flex-1 items-baseline justify-center gap-1.5">
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        min={1}
+                        aria-label="Number of cartons"
+                        value={count}
+                        onChange={(e) => setCount(Math.max(1, Math.round(Number(e.target.value) || 1)))}
+                        className="w-14 bg-transparent text-right text-base tabular-nums outline-none"
+                      />
+                      <span className="text-[0.85rem] text-steel">cartons</span>
+                    </label>
                     <button
                       type="button"
                       onClick={() => setCount((c) => c + 1)}
                       aria-label="More cartons"
-                      className="flex size-12 shrink-0 items-center justify-center rounded-[0.9rem] bg-mist text-navy transition-colors hover:bg-ice"
+                      className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-[#0e1526] transition-colors hover:bg-ice"
                     >
                       <Icon name="plus" className="size-4" />
                     </button>
                   </div>
                 </div>
-                <div>
-                  <label htmlFor={originId} className="mb-1.5 block text-[0.78rem] font-semibold text-steel">
-                    Shipping from (China)
-                  </label>
-                  <select id={originId} value={origin} onChange={(e) => setOrigin(e.target.value)} className="field">
-                    {ORIGINS.map((o) => (
-                      <option key={o}>{o}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor={destId} className="mb-1.5 block text-[0.78rem] font-semibold text-steel">
-                    Delivering to (Kenya)
-                  </label>
-                  <input id={destId} list="estimator-towns" value={dest} onChange={(e) => setDest(e.target.value)} className="field" />
-                  <datalist id="estimator-towns">
-                    {siteConfig.destinations.map((d) => (
-                      <option key={d} value={d} />
-                    ))}
-                  </datalist>
-                </div>
               </div>
 
-              <div className="mt-6 rounded-[1.25rem] bg-mist p-5" aria-live="polite">
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { label: "Volume", value: r.cbm, unit: "m³", decimals: 2 },
-                    { label: "Gross weight", value: r.gross, unit: "kg", decimals: 0 },
-                    { label: "Air chargeable", value: r.chargeable, unit: "kg", decimals: 0 },
-                  ].map((m) => (
-                    <div key={m.label}>
-                      <p className="text-[0.75rem] font-semibold text-steel">{m.label}</p>
-                      <p className="mt-1 font-display text-[clamp(1.3rem,2.6vw,1.9rem)] leading-none font-semibold text-cobalt tabular-nums">
-                        <AnimatedNumber value={m.value} decimals={m.decimals} />
-                        <span className="ml-1 text-[0.55em] text-navy">{m.unit}</span>
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 space-y-2" aria-hidden="true">
-                  {[
-                    { label: "Actual", v: r.gross, c: "bg-navy" },
-                    { label: "Volumetric", v: r.volumetric, c: "bg-cyan" },
-                  ].map((b) => (
-                    <div key={b.label} className="flex items-center gap-3 text-[0.72rem] font-semibold text-steel">
-                      <span className="w-[4.5rem] shrink-0">{b.label}</span>
-                      <span className="h-2 flex-1 overflow-hidden rounded-full bg-white">
-                        <motion.span
-                          className={`block h-full rounded-full ${b.c}`}
-                          animate={{ width: `${(b.v / max) * 100}%` }}
-                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        />
-                      </span>
-                      <span className="w-14 shrink-0 text-right tabular-nums">{Math.round(b.v)} kg</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 flex gap-3 border-t border-line pt-4">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white text-cobalt">
-                    <Icon name={r.advice.icon} className="size-5" />
+              <div className="mt-6" aria-live="polite">
+                <p className="text-base font-semibold">Shipment volume:</p>
+                <p className="mt-1 text-[2.4rem] leading-none font-medium text-cobalt tabular-nums">
+                  <AnimatedNumber value={r.cbm} decimals={2} /> m³
+                </p>
+                <p className="mt-3 text-[0.85rem] text-[#0e1526]/80">
+                  Gross weight <strong className="tabular-nums"><AnimatedNumber value={r.gross} /> kg</strong> · Air chargeable{" "}
+                  <strong className="tabular-nums"><AnimatedNumber value={r.chargeable} /> kg</strong>
+                  {r.volHeavier && <span className="text-cobalt"> (volume-based)</span>}
+                </p>
+                <p className="mt-3 flex items-start gap-2 text-[0.8rem] leading-snug text-steel">
+                  <Icon name={r.advice.icon} className="mt-0.5 size-4 shrink-0 text-cobalt" />
+                  <span>
+                    <strong className="font-semibold text-[#0e1526]">{r.advice.title}.</strong> {r.advice.body} Planning estimate
+                    only — your quote confirms cost, method and timeline.
                   </span>
-                  <div>
-                    <p className="text-[0.92rem] font-semibold text-navy">{r.advice.title}</p>
-                    <p className="mt-0.5 text-[0.82rem] leading-relaxed text-steel">{r.advice.body}</p>
-                  </div>
-                </div>
+                </p>
               </div>
-              <p className="mt-3 text-[0.72rem] leading-relaxed text-steel">
-                Planning estimate only. It doesn&rsquo;t include prices — your quote confirms the actual cost, method and timeline.
-              </p>
             </div>
           </Reveal>
         </div>

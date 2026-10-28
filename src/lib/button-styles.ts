@@ -3,18 +3,18 @@ export type Variant = "primary" | "navy" | "whatsapp" | "light" | "ghost" | "gla
 export type Size = "sm" | "md" | "lg";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-cobalt text-white hover:bg-cobalt-dark shadow-[0_10px_24px_-12px_rgba(37,86,232,0.8)]",
+  primary: "bg-cobalt text-white hover:bg-cobalt-dark",
   navy: "bg-navy text-white hover:bg-midnight",
-  whatsapp: "bg-whatsapp text-white hover:bg-whatsapp-dark shadow-[0_10px_24px_-12px_rgba(31,168,85,0.8)]",
+  whatsapp: "bg-whatsapp text-white hover:bg-whatsapp-dark",
   light: "bg-white text-navy hover:bg-ice",
   ghost: "bg-mist text-navy hover:bg-ice",
   glass: "bg-white/12 text-white ring-1 ring-white/25 backdrop-blur-md hover:bg-white/20",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-10 px-4 text-[0.88rem]",
-  md: "h-12 px-6 text-[0.95rem]",
-  lg: "h-14 px-8 text-base",
+  sm: "h-10 px-5 text-[0.85rem]",
+  md: "h-12 px-6 text-[0.9rem]",
+  lg: "h-[3.75rem] px-8 text-[0.95rem] min-w-[16rem]",
 };
 
 export function buttonClass(variant: Variant = "primary", size: Size = "md", extra = "") {

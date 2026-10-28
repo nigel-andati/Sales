@@ -45,62 +45,61 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
-        aria-hidden="true"
-        className={`absolute inset-x-0 top-0 h-[4.75rem] border-b border-white/10 bg-navy/80 backdrop-blur-xl transition-opacity duration-500 md:h-[5.25rem] ${
-          solid && !open ? "opacity-100" : "opacity-0"
-        }`}
-      />
-      <div className="shell relative flex h-[4.75rem] items-center justify-between gap-3 md:h-[5.25rem]">
-        <Link
-          href="/"
-          onClick={close}
-          aria-label="Home"
-          className="flex h-12 items-center rounded-full bg-white py-2 pr-5 pl-2.5 shadow-[0_8px_24px_-14px_rgba(10,23,51,0.6)]"
+        className={`mx-auto transition-[padding] duration-500 ease-out-expo ${solid && !open ? "px-0 pt-0 md:px-3 md:pt-2" : "px-3 pt-3 md:px-[2.25rem] md:pt-[2.25rem]"}`}
+      >
+        <div
+          className={`flex items-center justify-between gap-3 rounded-b-[1.75rem] transition-[background-color,padding,border-radius,backdrop-filter] duration-500 ease-out-expo md:rounded-full ${
+            solid && !open ? "bg-navy/75 px-3 py-3 backdrop-blur-xl md:px-3" : "bg-transparent p-0"
+          }`}
         >
-          <Logo />
-        </Link>
-
-        <nav aria-label="Main" className="hidden xl:block">
-          <ul className="flex h-12 items-center gap-1 rounded-full bg-white/12 px-2 ring-1 ring-white/20 backdrop-blur-md">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="block rounded-full px-4 py-2 text-[0.9rem] font-medium text-white/85 transition-colors hover:bg-white/15 hover:text-white"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <TrackedLink
-            href={whatsappHref()}
-            event="whatsapp_click"
-            eventLabel="header"
-            {...waProps}
-            aria-label="Chat on WhatsApp"
-            className="flex size-12 items-center justify-center rounded-full bg-whatsapp text-white transition-[background-color,transform] duration-300 hover:scale-105 hover:bg-whatsapp-dark"
+          <Link
+            href="/"
+            onClick={close}
+            aria-label="Home"
+            className="flex h-12 items-center rounded-full bg-cobalt px-5 text-white transition-colors hover:bg-cobalt-dark md:h-[3.75rem] md:min-w-[13.5rem] md:justify-center"
           >
-            <WhatsAppGlyph className="size-6" />
-          </TrackedLink>
-          <span className="hidden sm:block">
-            <QuoteButton location="header" size="md">
-              Get a Free Quote
-            </QuoteButton>
-          </span>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="flex size-12 items-center justify-center rounded-full bg-white text-navy transition-colors hover:bg-ice xl:hidden"
-          >
-            <Icon name={open ? "close" : "menu"} className="size-5" />
-          </button>
+            <Logo tone="light" />
+          </Link>
+
+          <nav aria-label="Main" className="hidden flex-1 xl:block">
+            <ul className="mx-auto flex h-[3.75rem] max-w-[44.5rem] items-center justify-between rounded-full bg-white/22 px-7 ring-1 ring-white/15 backdrop-blur-md">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="block py-2 text-[0.95rem] font-medium text-white transition-opacity hover:opacity-70">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <TrackedLink
+              href={whatsappHref()}
+              event="whatsapp_click"
+              eventLabel="header"
+              {...waProps}
+              aria-label="Chat on WhatsApp"
+              className="flex size-12 items-center justify-center rounded-full bg-whatsapp text-white transition-colors hover:bg-whatsapp-dark md:size-[3.75rem]"
+            >
+              <WhatsAppGlyph className="size-6" />
+            </TrackedLink>
+            <span className="hidden sm:block">
+              <QuoteButton location="header" size="lg" className="!h-[3.75rem] !min-w-0 md:!min-w-[15rem]">
+                Get a Free Quote
+              </QuoteButton>
+            </span>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="flex size-12 items-center justify-center rounded-full bg-cobalt text-white transition-colors hover:bg-cobalt-dark md:size-[3.75rem] xl:hidden"
+            >
+              <Icon name={open ? "close" : "menu"} className="size-5" />
+            </button>
+          </div>
         </div>
       </div>
 

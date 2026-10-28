@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { CarouselArrows } from "@/components/CarouselArrows";
 import { QuoteButton } from "@/components/Button";
 import { Icon } from "@/components/Icon";
@@ -11,33 +10,28 @@ import { useCarousel } from "@/lib/useCarousel";
 
 /** Mixed text/photo carousel of illustrative requests. */
 export function Examples() {
-  const { ref, edges, step, progress, dragHandlers } = useCarousel<HTMLUListElement>();
+  const { ref, edges, step, dragHandlers } = useCarousel<HTMLUListElement>();
   return (
-    <section aria-labelledby="examples-title" className="overflow-hidden pb-20 md:pb-28">
+    <section aria-labelledby="examples-title" className="overflow-hidden pb-16 md:pb-24">
       <div className="shell">
         <SectionHead
           id="examples-title"
           title="Example sourcing requests"
-          intro={
-            <>
-              The kind of requests we help with. These are <strong className="font-semibold text-navy">illustrative examples</strong>,
-              not completed customer orders.
-            </>
-          }
+          intro={<>Illustrative examples of what we help with — not completed customer orders</>}
           action={<CarouselArrows onStep={step} edges={edges} controls="examples-track" label="examples" />}
         />
       </div>
-      <Reveal className="mt-10">
+      <Reveal className="mt-6">
         <ul
           id="examples-track"
           ref={ref}
           {...dragHandlers}
-          className="no-scrollbar flex cursor-grab snap-x snap-mandatory items-stretch gap-4 overflow-x-auto scroll-smooth px-4 pb-4 scroll-px-4 select-none active:cursor-grabbing md:px-[max(1.75rem,calc((100vw-84rem)/2+1.75rem))] md:scroll-px-[max(1.75rem,calc((100vw-84rem)/2+1.75rem))]"
+          className="no-scrollbar flex cursor-grab snap-x snap-mandatory items-end gap-6 overflow-x-auto scroll-smooth px-3 pb-2 scroll-px-3 select-none active:cursor-grabbing md:px-[max(1.5rem,calc((100vw-90rem)/2+1.5rem))] md:scroll-px-[max(1.5rem,calc((100vw-90rem)/2+1.5rem))]"
         >
           {examples.map((ex) => (
-            <li key={ex.title} className="w-[78vw] max-w-[18.5rem] shrink-0 snap-start sm:w-[18.5rem]">
+            <li key={ex.title} className="w-[78vw] max-w-[20rem] shrink-0 snap-start sm:w-[20rem]">
               {ex.kind === "image" ? (
-                <article className="group relative isolate flex h-[25rem] flex-col justify-end overflow-hidden rounded-[1.375rem] bg-navy p-5 text-white">
+                <article className="group relative isolate flex h-[28.5rem] flex-col justify-end overflow-hidden rounded-[1.25rem] bg-navy p-5 text-white">
                   <Image
                     src={ex.image.src}
                     alt={ex.image.alt}
@@ -56,14 +50,14 @@ export function Examples() {
                 </article>
               ) : (
                 <article
-                  className={`flex h-[25rem] flex-col rounded-[1.375rem] p-6 ${ex.tone === "cobalt" ? "bg-gradient-to-br from-cobalt to-[#1b45c6] text-white" : "card text-navy"}`}
+                  className={`flex h-[24rem] flex-col rounded-[1.25rem] p-6 ${ex.tone === "cobalt" ? "bg-cobalt text-white" : "card text-[#0e1526]"}`}
                 >
                   <p
                     className={`w-fit rounded-full px-2.5 py-1 text-[0.68rem] font-bold tracking-[0.1em] uppercase ${ex.tone === "cobalt" ? "bg-white/15 text-white" : "bg-ice text-cobalt"}`}
                   >
                     Example request
                   </p>
-                  <h3 className="mt-6 text-[1.5rem] leading-[1.15] font-semibold">{ex.title}</h3>
+                  <h3 className="mt-5 text-[1.3rem] leading-[1.2] font-semibold">{ex.title}</h3>
                   <p className={`mt-3 text-[0.92rem] leading-relaxed ${ex.tone === "cobalt" ? "text-white/75" : "text-steel"}`}>{ex.detail}</p>
                   <ul className="mt-5 flex flex-wrap gap-1.5">
                     {ex.tags.map((t) => (
@@ -90,11 +84,6 @@ export function Examples() {
           ))}
         </ul>
       </Reveal>
-      <div className="shell mt-6">
-        <div className="relative h-1 overflow-hidden rounded-full bg-line" aria-hidden="true">
-          <motion.div className="absolute inset-y-0 left-0 w-full origin-left rounded-full bg-navy" style={{ scaleX: progress }} />
-        </div>
-      </div>
     </section>
   );
 }

@@ -17,8 +17,8 @@ export function Footer() {
   ).filter((s) => s.href);
 
   return (
-    <footer className="px-2 md:px-3">
-      <div className="rounded-t-[2rem] bg-white pb-28 sm:pb-10 md:rounded-t-[2.5rem]">
+    <footer>
+      <div className="rounded-t-[1.75rem] bg-white pb-28 sm:pb-8 md:rounded-t-[2.5rem]">
         <div className="shell pt-12 md:pt-16">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-4">
@@ -90,13 +90,13 @@ export function Footer() {
             </div>
 
             <div id="contact" className="lg:col-span-4">
-              <div className="rounded-[1.5rem] p-6 ring-[1.5px] ring-cobalt/40 sm:p-7">
+              <div className="rounded-[1.25rem] p-6 ring-[1.5px] ring-cobalt sm:p-7">
                 <p className="font-display text-[1.45rem] leading-tight font-semibold text-navy">Still have questions? Talk to us.</p>
                 <p className="mt-2 text-[0.9rem] text-steel">Tell us what you&rsquo;re looking for — we&rsquo;ll reply with options.</p>
                 <QuoteButton
                   location="footer-card"
                   unstyled
-                  className="group relative mt-6 flex h-28 flex-col justify-end overflow-hidden rounded-[1.1rem] bg-gradient-to-br from-cobalt to-[#1b45c6] p-4 text-white"
+                  className="group relative mt-6 flex h-28 flex-col justify-end overflow-hidden ml-auto rounded-[1rem] bg-cobalt p-4 text-white transition-colors hover:bg-cobalt-dark sm:w-[70%]"
                 >
                   <Icon
                     name="arrowUpRight"

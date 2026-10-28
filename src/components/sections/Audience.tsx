@@ -7,9 +7,9 @@ function Row({ items, reverse }: { items: readonly string[]; reverse?: boolean }
       <li
         key={`${t}-${hidden}`}
         aria-hidden={hidden || undefined}
-        className="flex shrink-0 items-center gap-2.5 rounded-full bg-white py-2 pr-5 pl-2 text-[0.92rem] font-medium text-navy shadow-[0_1px_0_rgba(10,23,51,0.05)] ring-1 ring-line transition-colors hover:bg-navy hover:text-white"
+        className="flex shrink-0 items-center gap-2.5 rounded-full bg-transparent py-2.5 pr-5 pl-2.5 text-[0.95rem] text-[#0e1526] ring-1 ring-[#b9c3cc] transition-colors hover:bg-white"
       >
-        <span className="flex size-7 items-center justify-center rounded-full bg-ice"><span className="size-2 rotate-45 rounded-[2px] bg-cobalt" /></span>
+        <span className="flex size-6 items-center justify-center rounded-full bg-cobalt"><span className="size-1.5 rotate-45 rounded-[1px] bg-white" /></span>
         {t}
       </li>
     ));
@@ -23,15 +23,15 @@ function Row({ items, reverse }: { items: readonly string[]; reverse?: boolean }
 
 export function Audience() {
   return (
-    <section aria-labelledby="audience-title" className="pb-20 md:pb-28">
+    <section aria-labelledby="audience-title" className="pb-16 md:pb-24">
       <div className="shell">
         <SectionHead
           id="audience-title"
           title="Who we help"
-          intro="Individuals and businesses of every size — the process is the same whether you need one item or a container."
+          intro="One item or a full container — the process is the same"
         />
       </div>
-      <div className="mt-10 space-y-3 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+      <div className="mt-6 space-y-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
         <Row items={audiences[0]} />
         <Row items={audiences[1]} reverse />
       </div>

@@ -16,51 +16,40 @@ const bubble = {
 export function WhatsAppBanner() {
   const reduce = useReducedMotion();
   return (
-    <section aria-labelledby="wa-title" className="pb-20 md:pb-28">
+    <section aria-labelledby="wa-title" className="pb-16 md:pb-24">
       <div className="shell">
-        <div className="relative isolate grid overflow-hidden rounded-[2rem] bg-gradient-to-br from-cobalt via-[#1f4bd6] to-midnight text-white lg:grid-cols-12">
-          <div className="pointer-events-none absolute -top-32 -left-24 -z-10 size-[28rem] rounded-full bg-cyan/25 blur-3xl" aria-hidden="true" />
-          <div
+        <div className="relative isolate grid overflow-hidden rounded-[1.25rem] bg-cobalt text-white lg:h-[24rem] lg:grid-cols-12">
+                    <div
             className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]"
             aria-hidden="true"
           />
           <motion.div
-            className="p-7 sm:p-10 lg:col-span-6 lg:p-14"
+            className="flex flex-col p-6 sm:p-10 lg:col-span-6 lg:p-12"
             initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-[0.75rem] font-semibold ring-1 ring-white/20">
+            <p className="inline-flex w-fit items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-[0.75rem] font-semibold">
               <WhatsAppGlyph className="size-4 text-[#5ee59a]" />
               WhatsApp sourcing
             </p>
-            <h2 id="wa-title" className="mt-5 text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05] font-semibold text-balance">
+            <h2 id="wa-title" className="mt-4 text-[clamp(1.6rem,2.45vw,2.2rem)] leading-[1.2] font-semibold text-balance">
               See something you want? Send us a picture.
             </h2>
-            <p className="mt-4 max-w-md text-[1rem] leading-relaxed text-white/75">
+            <p className="mt-3 max-w-md text-[0.95rem] leading-snug text-white/90">
               No product name or supplier link needed. A photo or screenshot is enough for us to start identifying sourcing
               options in China.
             </p>
-            <ol className="mt-7 space-y-3 text-[0.92rem]">
-              {["Screenshot or snap it — TikTok, Instagram, a shop, anywhere", "Send it with the quantity and your town", "We come back with options and a quote"].map(
-                (t, i) => (
-                  <li key={t} className="flex items-center gap-3">
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/12 text-[0.75rem] font-bold text-cyan">{i + 1}</span>
-                    <span className="text-white/85">{t}</span>
-                  </li>
-                ),
-              )}
-            </ol>
-            <WhatsAppButton location="whatsapp-banner" size="lg" message={siteConfig.whatsappMessages.photo} className="mt-9 w-full sm:w-auto">
+            <WhatsAppButton location="whatsapp-banner" size="lg" variant="navy" message={siteConfig.whatsappMessages.photo} className="mt-8 w-full sm:w-[27rem] lg:mt-auto">
               Send Product on WhatsApp
             </WhatsAppButton>
           </motion.div>
 
           {/* Illustrative phone — not a real conversation. */}
-          <div className="relative flex items-end justify-center px-6 pt-2 lg:col-span-6 lg:pt-12" aria-hidden="true">
+          <div className="relative flex h-[22rem] items-start justify-center overflow-hidden px-6 pt-2 lg:col-span-6 lg:h-auto lg:pt-10" aria-hidden="true">
             <motion.div
-              className="relative w-full max-w-[19.5rem] rounded-t-[2.6rem] border-[7px] border-b-0 border-navy bg-navy shadow-[0_40px_90px_-30px_rgba(5,12,30,0.9)]"
+              className="relative w-full max-w-[18rem] translate-y-0 rounded-t-[2.6rem] border-[7px] border-b-0 border-navy bg-navy shadow-[0_40px_90px_-30px_rgba(5,12,30,0.9)]"
               initial={reduce ? false : { y: 80, rotate: 4 }}
               whileInView={{ y: 0, rotate: 0 }}
               viewport={{ once: true, margin: "-10%" }}

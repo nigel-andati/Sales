@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Noto_Sans_SC, Sora } from "next/font/google";
+import { Inter, Noto_Sans_SC } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,8 +8,7 @@ import { Analytics } from "@/components/Analytics";
 import { QuoteProvider } from "@/components/quote/QuoteProvider";
 import "./globals.css";
 
-const sora = Sora({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-sora", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 // Only used for the Chinese city names; the browser downloads just the glyphs it needs.
 const notoSC = Noto_Sans_SC({ weight: ["600"], variable: "--font-cjk", display: "swap", preload: false });
 
@@ -51,7 +50,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-KE" className={`${sora.variable} ${manrope.variable} ${notoSC.variable}`}>
+    <html lang="en-KE" className={`${inter.variable} ${notoSC.variable}`}>
       <body>
         <a
           href="#main"
